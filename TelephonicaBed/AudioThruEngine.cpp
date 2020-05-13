@@ -204,8 +204,8 @@ void	AudioThruEngine::Start()
 	mInputProcState = kStarting;
 	mOutputProcState = kStarting;
 	
-	verify_noerr (AudioDeviceAddIOProc(mInputDevice.mID, InputIOProc, this));
-	verify_noerr (AudioDeviceStart(mInputDevice.mID, InputIOProc));
+	__Verify_noErr (AudioDeviceAddIOProc(mInputDevice.mID, InputIOProc, this));
+	__Verify_noErr (AudioDeviceStart(mInputDevice.mID, InputIOProc));
 	
 	if (mInputDevice.CountChannels() == 2)
 		mOutputIOProc = OutputIOProc;
@@ -213,8 +213,8 @@ void	AudioThruEngine::Start()
 		mOutputIOProc = OutputIOProc16;
 		
 
-	verify_noerr (AudioDeviceAddIOProc(mOutputDevice.mID, mOutputIOProc, this));
-	verify_noerr (AudioDeviceStart(mOutputDevice.mID, mOutputIOProc));
+	__Verify_noErr (AudioDeviceAddIOProc(mOutputDevice.mID, mOutputIOProc, this));
+	__Verify_noErr (AudioDeviceStart(mOutputDevice.mID, mOutputIOProc));
 
 //	UInt32 propsize = sizeof(UInt32);
 //	UInt32 isAlreadyRunning;
@@ -232,11 +232,11 @@ void	AudioThruEngine::Start()
             mRunning = false;
             printf("give up to start.\n");
             
-            verify_noerr (AudioDeviceStop(mInputDevice.mID, InputIOProc));
-            verify_noerr (AudioDeviceRemoveIOProc(mInputDevice.mID, InputIOProc));
+            __Verify_noErr (AudioDeviceStop(mInputDevice.mID, InputIOProc));
+            __Verify_noErr (AudioDeviceRemoveIOProc(mInputDevice.mID, InputIOProc));
             
-            verify_noerr (AudioDeviceStop(mOutputDevice.mID, mOutputIOProc));
-            verify_noerr (AudioDeviceRemoveIOProc(mOutputDevice.mID, mOutputIOProc));
+            __Verify_noErr (AudioDeviceStop(mOutputDevice.mID, mOutputIOProc));
+            __Verify_noErr (AudioDeviceRemoveIOProc(mOutputDevice.mID, mOutputIOProc));
             
             mInputProcState = kOff;
             mOutputProcState = kOff;

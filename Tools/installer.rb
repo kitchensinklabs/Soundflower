@@ -74,7 +74,7 @@ end
 def getversion()
   theVersion = "0.0.0"
 
-  f = File.open("#{@installer_root}/System/Library/Extensions/Telephonica.kext/Contents/Info.plist", "r")
+  f = File.open("#{@installer_root}/Library/Extensions/Telephonica.kext/Contents/Info.plist", "r")
   str = f.read
   theVersion = str.match(/<key>CFBundleShortVersionString<\/key>\n.*<string>(.*)<\/string>/).captures[0]
   f.close
@@ -103,7 +103,7 @@ cmd("cp \"#{@svn_root}/Installer/ReadMe.rtf\"                       \"#{@install
 cmd("cp \"#{@svn_root}/TelephonicaBed/Telephonicabed README.rtf\"   \"#{@installer_root}\"/Applications/Telephonica")
 
 puts "  Building Package -- this could take a while..."
-puts `pkgbuild --root \"#{@installer_root}\" --identifier com.cycling74.soundflower --version #{@version} --install-location "/" \"#{@build_folder}/Telephonica.pkg\" --ownership preserve  --scripts \"#{@svn_root}/Installer/scripts\" --sign \"Developer ID Installer: Cycling '74\"`
+puts `pkgbuild --root \"#{@installer_root}\" --identifier com.cycling74.soundflower --version #{@version} --install-location "/" \"#{@build_folder}/Telephonica.pkg\" --ownership preserve  --scripts \"#{@svn_root}/Installer/scripts\" --sign \"Developer ID Installer: Get Better, Inc.\"`
 
 puts "  Copying readme, license, etc...."
 cmd("cp \"#{@svn_root}/License.txt\" \"#{@build_folder}\"")
