@@ -1,5 +1,5 @@
 /*
-	File:SoundflowerEngine.h
+	File:TelephonicaEngine.h
 
 	Version: 1.0.1, ma++ ingalls
     
@@ -24,16 +24,16 @@
 	THE SOFTWARE.
 */
 
-#ifndef _SoundflowerENGINE_H
-#define _SoundflowerENGINE_H
+#ifndef _TelephonicaENGINE_H
+#define _TelephonicaENGINE_H
 
 #include <IOKit/audio/IOAudioEngine.h>
-#include "SoundflowerDevice.h"
+#include "TelephonicaDevice.h"
 
 
-class SoundflowerEngine : public IOAudioEngine
+class TelephonicaEngine : public IOAudioEngine
 {
-    OSDeclareDefaultStructors(SoundflowerEngine)
+    OSDeclareDefaultStructors(TelephonicaEngine)
     
 	UInt32				mBufferSize;
 	void*				mBuffer;				// input/output buffer
@@ -82,4 +82,4 @@ public:
 };
 
 
-#endif /* _SoundflowerENGINE_H */
+#endif /* _TelephonicaENGINE_H */

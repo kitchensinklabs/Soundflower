@@ -1,5 +1,5 @@
 /*
-	File:SoundflowerDevice.h
+	File:TelephonicaDevice.h
 
 	Version: 1.0.1, ma++ ingalls
     
@@ -38,16 +38,16 @@
 #define SAMPLE_RATES_KEY				"SampleRates"
 #define SEPARATE_STREAM_BUFFERS_KEY		"SeparateStreamBuffers"
 #define SEPARATE_INPUT_BUFFERS_KEY		"SeparateInputBuffers"
-#define SoundflowerDevice				com_cycling74_driver_SoundflowerDevice
+#define TelephonicaDevice				com_getbetter_driver_TelephonicaDevice
 
 #define NUM_CHANS 64
 
-class SoundflowerEngine;
+class TelephonicaEngine;
 
-class SoundflowerDevice : public IOAudioDevice
+class TelephonicaDevice : public IOAudioDevice
 {
-    OSDeclareDefaultStructors(SoundflowerDevice)
-    friend class SoundflowerEngine;
+    OSDeclareDefaultStructors(TelephonicaDevice)
+    friend class TelephonicaEngine;
     
 	// class members
 	
@@ -67,7 +67,7 @@ class SoundflowerDevice : public IOAudioDevice
 	
     virtual bool initHardware(IOService *provider);
     virtual bool createAudioEngines();
-    virtual bool initControls(SoundflowerEngine *audioEngine);
+    virtual bool initControls(TelephonicaEngine *audioEngine);
     
     static  IOReturn volumeChangeHandler(IOService *target, IOAudioControl *volumeControl, SInt32 oldValue, SInt32 newValue);
     virtual IOReturn volumeChanged(IOAudioControl *volumeControl, SInt32 oldValue, SInt32 newValue);

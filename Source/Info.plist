@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Cycling74.driver.Soundflower</string>
+	<string>co.GetBetter.driver.Telephonica</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -30,7 +30,7 @@
 					<key>BlockSize</key>
 					<integer>8192</integer>
 					<key>Description</key>
-					<string>Soundflower (2ch)</string>
+					<string>Telephonica (2ch)</string>
 					<key>Formats</key>
 					<array>
 						<dict>
@@ -72,7 +72,7 @@
 					<key>BlockSize</key>
 					<integer>8192</integer>
 					<key>Description</key>
-					<string>Soundflower (64ch)</string>
+					<string>Telephonica (64ch)</string>
 					<key>Formats</key>
 					<array>
 						<dict>
@@ -112,11 +112,11 @@
 				</dict>
 			</array>
 			<key>CFBundleIdentifier</key>
-			<string>com.Cycling74.driver.Soundflower</string>
+			<string>co.GetBetter.driver.Telephonica</string>
 			<key>IOClass</key>
-			<string>com_cycling74_driver_SoundflowerDevice</string>
+			<string>co_getbetter_driver_TelephonicaDevice</string>
 			<key>IOMatchCategory</key>
-			<string>com_cycling74_driver_SoundflowerDevice</string>
+			<string>co_getbetter_driver_TelephonicaDevice</string>
 			<key>IOProviderClass</key>
 			<string>IOResources</string>
 			<key>IOResourceMatch</key>

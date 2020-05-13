@@ -1,5 +1,5 @@
 /*
-  File:SoundflowerEngine.cpp
+  File:TelephonicaEngine.cpp
 
 	Version: 1.0.1, ma++ ingalls
     
@@ -24,7 +24,7 @@
 	THE SOFTWARE.
 */
 
-#include "SoundflowerEngine.h"
+#include "TelephonicaEngine.h"
 #include <IOKit/audio/IOAudioControl.h>
 #include <IOKit/audio/IOAudioLevelControl.h>
 #include <IOKit/audio/IOAudioToggleControl.h>
@@ -40,16 +40,16 @@
 
 #define super IOAudioEngine
 
-OSDefineMetaClassAndStructors(SoundflowerEngine, IOAudioEngine)
+OSDefineMetaClassAndStructors(TelephonicaEngine, IOAudioEngine)
 
 
  
-bool SoundflowerEngine::init(OSDictionary *properties)
+bool TelephonicaEngine::init(OSDictionary *properties)
 {
     bool result = false;
     OSNumber *number = NULL;
     
-	//IOLog("SoundflowerEngine[%p]::init()\n", this);
+	//IOLog("TelephonicaEngine[%p]::init()\n", this);
 
     if (!super::init(properties)) {
         goto Done;
@@ -69,8 +69,8 @@ bool SoundflowerEngine::init(OSDictionary *properties)
 	 (doseq [[i v] (map-indexed dB->scale (map #(val->dB -40.0 %) (range 0 100)))] (println "\tlogTable[" i "] = " v ";"))
 	 
 	 To adjust the minimum volume, change the -40 (in dB) value in the last line and also the
-	 corresponding visual aid in SoundflowerDevice.cpp Do not change the number of volume points 
-	 without also changing the minVolume/minGain constants in SoundflowerDevice.cpp.
+	 corresponding visual aid in TelephonicaDevice.cpp Do not change the number of volume points 
+	 without also changing the minVolume/minGain constants in TelephonicaDevice.cpp.
 	 
 	 Initially, I used -71 as the minimum volume, but in reality my setup seems to reach zero
 	 muchbefore -71. A floor of -40 seems to work *ok* for my setup.
@@ -202,13 +202,13 @@ Done:
 }
 
 
-bool SoundflowerEngine::initHardware(IOService *provider)
+bool TelephonicaEngine::initHardware(IOService *provider)
 {
     bool result = false;
     IOAudioSampleRate initialSampleRate;
     IOWorkLoop *wl;
     
-    //IOLog("SoundflowerEngine[%p]::initHardware(%p)\n", this, provider);
+    //IOLog("TelephonicaEngine[%p]::initHardware(%p)\n", this, provider);
     
     duringHardwareInit = TRUE;
     
@@ -220,7 +220,7 @@ bool SoundflowerEngine::initHardware(IOService *provider)
     initialSampleRate.fraction = 0;
 
     if (!createAudioStreams(&initialSampleRate)) {
-		IOLog("SoundflowerEngine::initHardware() failed\n");
+		IOLog("TelephonicaEngine::initHardware() failed\n");
         goto Done;
     }
 	
@@ -259,7 +259,7 @@ Done:
 }
 
  
-bool SoundflowerEngine::createAudioStreams(IOAudioSampleRate *initialSampleRate)
+bool TelephonicaEngine::createAudioStreams(IOAudioSampleRate *initialSampleRate)
 {
     bool			result = false;
     OSNumber*		number = NULL;
@@ -322,8 +322,8 @@ bool SoundflowerEngine::createAudioStreams(IOAudioSampleRate *initialSampleRate)
 			goto Error;
         }
 
-        snprintf(inputStreamName, 64, "Soundflower Input Stream #%u", (unsigned int)streamNum + 1);
-        snprintf(outputStreamName, 64, "Soundflower Output Stream #%u", (unsigned int)streamNum + 1);
+        snprintf(inputStreamName, 64, "Telephonica Input Stream #%u", (unsigned int)streamNum + 1);
+        snprintf(outputStreamName, 64, "Telephonica Output Stream #%u", (unsigned int)streamNum + 1);
 
         if (!inputStream->initWithAudioEngine(this, kIOAudioStreamDirectionInput, startingChannelID, inputStreamName) ||
             !outputStream->initWithAudioEngine(this, kIOAudioStreamDirectionOutput, startingChannelID, outputStreamName)) {
@@ -388,18 +388,18 @@ bool SoundflowerEngine::createAudioStreams(IOAudioSampleRate *initialSampleRate)
         }
         
         mBufferSize = blockSize * numBlocks * maxNumChannels * maxBitWidth / 8;
-        //IOLog("Soundflower streamBufferSize: %ld\n", mBufferSize);
+        //IOLog("Telephonica streamBufferSize: %ld\n", mBufferSize);
 		
         if (mBuffer == NULL) {
             mBuffer = (void *)IOMalloc(mBufferSize);
             if (!mBuffer) {
-                IOLog("Soundflower: Error allocating output buffer - %lu bytes.\n", (unsigned long)mBufferSize);
+                IOLog("Telephonica: Error allocating output buffer - %lu bytes.\n", (unsigned long)mBufferSize);
                 goto Error;
             }
 			
             mThruBuffer = (float*)IOMalloc(mBufferSize);
             if (!mThruBuffer) {
-                IOLog("Soundflower: Error allocating thru buffer - %lu bytes.\n", (unsigned long)mBufferSize);
+                IOLog("Telephonica: Error allocating thru buffer - %lu bytes.\n", (unsigned long)mBufferSize);
                 goto Error;
             }
             memset((UInt8*)mThruBuffer, 0, mBufferSize);
@@ -429,7 +429,7 @@ bool SoundflowerEngine::createAudioStreams(IOAudioSampleRate *initialSampleRate)
         continue;
 
 Error:
-        IOLog("SoundflowerEngine[%p]::createAudioStreams() - ERROR\n", this);
+        IOLog("TelephonicaEngine[%p]::createAudioStreams() - ERROR\n", this);
     
         if (inputStream)
             inputStream->release();
@@ -445,14 +445,14 @@ Error:
     
 Done:
     if (!result)
-        IOLog("SoundflowerEngine[%p]::createAudioStreams() - failed!\n", this);
+        IOLog("TelephonicaEngine[%p]::createAudioStreams() - failed!\n", this);
     return result;
 }
 
  
-void SoundflowerEngine::free()
+void TelephonicaEngine::free()
 {
-	//IOLog("SoundflowerEngine[%p]::free()\n", this);
+	//IOLog("TelephonicaEngine[%p]::free()\n", this);
     
     if (mBuffer) {
         IOFree(mBuffer, mBufferSize);
@@ -466,9 +466,9 @@ void SoundflowerEngine::free()
 }
 
  
-IOReturn SoundflowerEngine::performAudioEngineStart()
+IOReturn TelephonicaEngine::performAudioEngineStart()
 {
-    //IOLog("SoundflowerEngine[%p]::performAudioEngineStart()\n", this);
+    //IOLog("TelephonicaEngine[%p]::performAudioEngineStart()\n", this);
 
     // When performAudioEngineStart() gets called, the audio engine should be started from the beginning
     // of the sample buffer.  Because it is starting on the first sample, a new timestamp is needed
@@ -497,9 +497,9 @@ IOReturn SoundflowerEngine::performAudioEngineStart()
 }
 
  
-IOReturn SoundflowerEngine::performAudioEngineStop()
+IOReturn TelephonicaEngine::performAudioEngineStop()
 {
-    //IOLog("SoundflowerEngine[%p]::performAudioEngineStop()\n", this);
+    //IOLog("TelephonicaEngine[%p]::performAudioEngineStop()\n", this);
      
     timerEventSource->cancelTimeout();
     
@@ -507,9 +507,9 @@ IOReturn SoundflowerEngine::performAudioEngineStop()
 }
 
  
-UInt32 SoundflowerEngine::getCurrentSampleFrame()
+UInt32 TelephonicaEngine::getCurrentSampleFrame()
 {
-    //IOLog("SoundflowerEngine[%p]::getCurrentSampleFrame() - currentBlock = %lu\n", this, currentBlock);
+    //IOLog("TelephonicaEngine[%p]::getCurrentSampleFrame() - currentBlock = %lu\n", this, currentBlock);
     
     // In order for the erase process to run properly, this function must return the current location of
     // the audio engine - basically a sample counter
@@ -522,10 +522,10 @@ UInt32 SoundflowerEngine::getCurrentSampleFrame()
 }
 
 
-IOReturn SoundflowerEngine::performFormatChange(IOAudioStream *audioStream, const IOAudioStreamFormat *newFormat, const IOAudioSampleRate *newSampleRate)
+IOReturn TelephonicaEngine::performFormatChange(IOAudioStream *audioStream, const IOAudioStreamFormat *newFormat, const IOAudioSampleRate *newSampleRate)
 {     
     if (!duringHardwareInit) {
-  //      IOLog("SoundflowerEngine[%p]::peformFormatChange(%p, %p, %p)\n", this, audioStream, newFormat, newSampleRate);
+  //      IOLog("TelephonicaEngine[%p]::peformFormatChange(%p, %p, %p)\n", this, audioStream, newFormat, newSampleRate);
     }
 
     // It is possible that this function will be called with only a format or only a sample rate
@@ -548,10 +548,10 @@ IOReturn SoundflowerEngine::performFormatChange(IOAudioStream *audioStream, cons
 }
 
 
-void SoundflowerEngine::ourTimerFired(OSObject *target, IOTimerEventSource *sender)
+void TelephonicaEngine::ourTimerFired(OSObject *target, IOTimerEventSource *sender)
 {
     if (target) {
-        SoundflowerEngine	*audioEngine = OSDynamicCast(SoundflowerEngine, target);
+        TelephonicaEngine	*audioEngine = OSDynamicCast(TelephonicaEngine, target);
 		UInt64				thisTimeNS;
 		uint64_t			time;
 		SInt64				diff;
@@ -583,16 +583,16 @@ void SoundflowerEngine::ourTimerFired(OSObject *target, IOTimerEventSource *send
 }
 
 
-IOReturn SoundflowerEngine::clipOutputSamples(const void *mixBuf, void *sampleBuf, UInt32 firstSampleFrame, UInt32 numSampleFrames, const IOAudioStreamFormat *streamFormat, IOAudioStream *audioStream)
+IOReturn TelephonicaEngine::clipOutputSamples(const void *mixBuf, void *sampleBuf, UInt32 firstSampleFrame, UInt32 numSampleFrames, const IOAudioStreamFormat *streamFormat, IOAudioStream *audioStream)
 {
     UInt32				channelCount = streamFormat->fNumChannels;
     UInt32				offset = firstSampleFrame * channelCount;
     UInt32				byteOffset = offset * sizeof(float);
     UInt32				numBytes = numSampleFrames * channelCount * sizeof(float);
-	SoundflowerDevice*	device = (SoundflowerDevice*)audioDevice;
+	TelephonicaDevice*	device = (TelephonicaDevice*)audioDevice;
 	
 #if 0
-	IOLog("SoundflowerEngine[%p]::clipOutputSamples() -- channelCount:%u \n", this, (uint)channelCount);
+	IOLog("TelephonicaEngine[%p]::clipOutputSamples() -- channelCount:%u \n", this, (uint)channelCount);
 	IOLog("    input -- numChannels: %u", (uint)inputStream->format.fNumChannels);
 	IOLog("    bitDepth: %u", (uint)inputStream->format.fBitDepth);
 	IOLog("    bitWidth: %u", (uint)inputStream->format.fBitWidth);
@@ -641,14 +641,14 @@ IOReturn SoundflowerEngine::clipOutputSamples(const void *mixBuf, void *sampleBu
 
 // This is called when client apps need input audio.  Here we give them saved audio from the clip routine.
 
-IOReturn SoundflowerEngine::convertInputSamples(const void *sampleBuf, void *destBuf, UInt32 firstSampleFrame, UInt32 numSampleFrames, const IOAudioStreamFormat *streamFormat, IOAudioStream *audioStream)
+IOReturn TelephonicaEngine::convertInputSamples(const void *sampleBuf, void *destBuf, UInt32 firstSampleFrame, UInt32 numSampleFrames, const IOAudioStreamFormat *streamFormat, IOAudioStream *audioStream)
 {
     UInt32				frameSize = streamFormat->fNumChannels * sizeof(float);
     UInt32				offset = firstSampleFrame * frameSize;
-	SoundflowerDevice*	device = (SoundflowerDevice*)audioDevice;
+	TelephonicaDevice*	device = (TelephonicaDevice*)audioDevice;
 
 #if 0
-	//IOLog("SoundflowerEngine[%p]::convertInputSamples() -- channelCount:%u \n", this, (uint)streamFormat->fNumChannels);
+	//IOLog("TelephonicaEngine[%p]::convertInputSamples() -- channelCount:%u \n", this, (uint)streamFormat->fNumChannels);
 	IOLog("OUTPUT: firstSampleFrame: %u   numSampleFrames: %u \n", (uint)firstSampleFrame, (uint)numSampleFrames);
 	IOLog("    mLastValidSampleFrame: %u  (diff: %ld)   \n", (uint)mLastValidSampleFrame, long(mLastValidSampleFrame) - long(firstSampleFrame+numSampleFrames));
 #endif 

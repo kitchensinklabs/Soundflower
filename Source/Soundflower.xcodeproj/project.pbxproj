@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		222AE0091862541400C9BE56 /* SoundflowerDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 222AE0021862541400C9BE56 /* SoundflowerDevice.cpp */; };
-		222AE00A1862541400C9BE56 /* SoundflowerDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 222AE0031862541400C9BE56 /* SoundflowerDevice.h */; };
-		222AE00B1862541400C9BE56 /* SoundflowerEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 222AE0041862541400C9BE56 /* SoundflowerEngine.cpp */; };
-		222AE00C1862541400C9BE56 /* SoundflowerEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 222AE0051862541400C9BE56 /* SoundflowerEngine.h */; };
+		222AE0091862541400C9BE56 /* TelephonicaDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 222AE0021862541400C9BE56 /* TelephonicaDevice.cpp */; };
+		222AE00A1862541400C9BE56 /* TelephonicaDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 222AE0031862541400C9BE56 /* TelephonicaDevice.h */; };
+		222AE00B1862541400C9BE56 /* TelephonicaEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 222AE0041862541400C9BE56 /* TelephonicaEngine.cpp */; };
+		222AE00C1862541400C9BE56 /* TelephonicaEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 222AE0051862541400C9BE56 /* TelephonicaEngine.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		222ADFEC1862531600C9BE56 /* Soundflower.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Soundflower.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		222ADFEC1862531600C9BE56 /* Telephonica.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Telephonica.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		222ADFFF1862541300C9BE56 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		222AE0021862541400C9BE56 /* SoundflowerDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundflowerDevice.cpp; sourceTree = "<group>"; };
-		222AE0031862541400C9BE56 /* SoundflowerDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundflowerDevice.h; sourceTree = "<group>"; };
-		222AE0041862541400C9BE56 /* SoundflowerEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundflowerEngine.cpp; sourceTree = "<group>"; };
-		222AE0051862541400C9BE56 /* SoundflowerEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundflowerEngine.h; sourceTree = "<group>"; };
+		222AE0021862541400C9BE56 /* TelephonicaDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TelephonicaDevice.cpp; sourceTree = "<group>"; };
+		222AE0031862541400C9BE56 /* TelephonicaDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TelephonicaDevice.h; sourceTree = "<group>"; };
+		222AE0041862541400C9BE56 /* TelephonicaEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TelephonicaEngine.cpp; sourceTree = "<group>"; };
+		222AE0051862541400C9BE56 /* TelephonicaEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TelephonicaEngine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,10 +37,10 @@
 			isa = PBXGroup;
 			children = (
 				222ADFFF1862541300C9BE56 /* Info.plist */,
-				222AE0021862541400C9BE56 /* SoundflowerDevice.cpp */,
-				222AE0031862541400C9BE56 /* SoundflowerDevice.h */,
-				222AE0041862541400C9BE56 /* SoundflowerEngine.cpp */,
-				222AE0051862541400C9BE56 /* SoundflowerEngine.h */,
+				222AE0021862541400C9BE56 /* TelephonicaDevice.cpp */,
+				222AE0031862541400C9BE56 /* TelephonicaDevice.h */,
+				222AE0041862541400C9BE56 /* TelephonicaEngine.cpp */,
+				222AE0051862541400C9BE56 /* TelephonicaEngine.h */,
 				222ADFED1862531600C9BE56 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,7 +48,7 @@
 		222ADFED1862531600C9BE56 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				222ADFEC1862531600C9BE56 /* Soundflower.kext */,
+				222ADFEC1862531600C9BE56 /* Telephonica.kext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,17 +60,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				222AE00A1862541400C9BE56 /* SoundflowerDevice.h in Headers */,
-				222AE00C1862541400C9BE56 /* SoundflowerEngine.h in Headers */,
+				222AE00A1862541400C9BE56 /* TelephonicaDevice.h in Headers */,
+				222AE00C1862541400C9BE56 /* TelephonicaEngine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		222ADFEB1862531600C9BE56 /* Soundflower */ = {
+		222ADFEB1862531600C9BE56 /* Telephonica */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 222ADFFC1862531600C9BE56 /* Build configuration list for PBXNativeTarget "Soundflower" */;
+			buildConfigurationList = 222ADFFC1862531600C9BE56 /* Build configuration list for PBXNativeTarget "Telephonica" */;
 			buildPhases = (
 				222ADFE61862531600C9BE56 /* Sources */,
 				222ADFE71862531600C9BE56 /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = Soundflower;
-			productName = Soundflower;
-			productReference = 222ADFEC1862531600C9BE56 /* Soundflower.kext */;
+			name = Telephonica;
+			productName = Telephonica;
+			productReference = 222ADFEC1862531600C9BE56 /* Telephonica.kext */;
 			productType = "com.apple.product-type.kernel-extension";
 		};
 /* End PBXNativeTarget section */
@@ -101,7 +101,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 222ADFE51862531600C9BE56 /* Build configuration list for PBXProject "Soundflower" */;
+			buildConfigurationList = 222ADFE51862531600C9BE56 /* Build configuration list for PBXProject "Telephonica" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -113,7 +113,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				222ADFEB1862531600C9BE56 /* Soundflower */,
+				222ADFEB1862531600C9BE56 /* Telephonica */,
 			);
 		};
 /* End PBXProject section */
@@ -143,8 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				222AE00B1862541400C9BE56 /* SoundflowerEngine.cpp in Sources */,
-				222AE0091862541400C9BE56 /* SoundflowerDevice.cpp in Sources */,
+				222AE00B1862541400C9BE56 /* TelephonicaEngine.cpp in Sources */,
+				222AE0091862541400C9BE56 /* TelephonicaDevice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +239,7 @@
 				INSTALL_GROUP = wheel;
 				INSTALL_OWNER = root;
 				INSTALL_PATH = /Library/Extensions;
-				MODULE_NAME = com.Cycling74.driver.Soundflower;
+				MODULE_NAME = co.GetBetter.driver.Telephonica;
 				MODULE_VERSION = 2.0b1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -265,7 +265,7 @@
 				INSTALL_GROUP = wheel;
 				INSTALL_OWNER = root;
 				INSTALL_PATH = /Library/Extensions;
-				MODULE_NAME = com.Cycling74.driver.Soundflower;
+				MODULE_NAME = co.GetBetter.driver.Telephonica;
 				MODULE_VERSION = 2.0b1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -277,7 +277,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		222ADFE51862531600C9BE56 /* Build configuration list for PBXProject "Soundflower" */ = {
+		222ADFE51862531600C9BE56 /* Build configuration list for PBXProject "Telephonica" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				222ADFFA1862531600C9BE56 /* Debug */,
@@ -286,7 +286,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		222ADFFC1862531600C9BE56 /* Build configuration list for PBXNativeTarget "Soundflower" */ = {
+		222ADFFC1862531600C9BE56 /* Build configuration list for PBXNativeTarget "Telephonica" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				222ADFFD1862531600C9BE56 /* Debug */,
