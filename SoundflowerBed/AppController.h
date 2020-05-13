@@ -32,8 +32,8 @@
     AudioDeviceID   mSuspended2chDeviceID;
     AudioDeviceID   mSuspended16chDeviceID;
 	
-	AudioDeviceID				mSoundflower2Device;
-	AudioDeviceID				mSoundflower16Device;
+	AudioDeviceID				mTelephonica2Device;
+	AudioDeviceID				mTelephonica16Device;
 	
 	AudioDeviceList *			mOutputDeviceList;	
 	

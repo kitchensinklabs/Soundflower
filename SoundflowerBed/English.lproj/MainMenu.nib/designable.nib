@@ -44,7 +44,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{638, 856}, {377, 113}}</string>
 				<int key="NSWTFlags">813171712</int>
-				<string key="NSWindowTitle">About Soundflowerbed</string>
+				<string key="NSWindowTitle">About Telephonicabed</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<object class="NSMutableString" key="NSViewClass">
 					<characters key="NS.bytes">View</characters>
@@ -94,7 +94,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="979784372">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">138412032</int>
-								<string key="NSContents">Soundflowerbed v1.6.6</string>
+								<string key="NSContents">Telephonicabed v1.6.6</string>
 								<object class="NSFont" key="NSSupport">
 									<string key="NSName">LucidaGrande-Bold</string>
 									<double key="NSSize">13</double>

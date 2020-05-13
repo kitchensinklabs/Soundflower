@@ -462,7 +462,7 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
 	AudioDeviceList::DeviceList &thelist = mOutputDeviceList->GetList();
 	int index = 0;
 	for (AudioDeviceList::DeviceList::iterator i = thelist.begin(); i != thelist.end(); ++i, ++index) {
-		if (0 == strncmp("Soundflower", (*i).mName, strlen("Soundflower"))) {
+		if (0 == strncmp("Telephonica", (*i).mName, strlen("Telephonica"))) {
 			//verify_noerr (AudioDeviceAddPropertyListener((*i).mID, 0, true, kAudioStreamPropertyPhysicalFormat, DeviceListenerProc, self));
 			//verify_noerr (AudioDeviceAddPropertyListener((*i).mID, 0, true, kAudioDevicePropertyStreamFormat, DeviceListenerProc, self));
 			verify_noerr (AudioDeviceAddPropertyListener((*i).mID, 0, true, kAudioDevicePropertyNominalSampleRate, DeviceListenerProc, self));
@@ -513,7 +513,7 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
 	AudioDeviceList::DeviceList &thelist = mOutputDeviceList->GetList();
 	int index = 0;
 	for (AudioDeviceList::DeviceList::iterator i = thelist.begin(); i != thelist.end(); ++i, ++index) {
-		if (0 == strncmp("Soundflower", (*i).mName, strlen("Soundflower"))) {
+		if (0 == strncmp("Telephonica", (*i).mName, strlen("Telephonica"))) {
 			verify_noerr (AudioDeviceRemovePropertyListener((*i).mID, 0, true, kAudioDevicePropertyNominalSampleRate, DeviceListenerProc));
 			verify_noerr (AudioDeviceRemovePropertyListener((*i).mID, 0, true, kAudioDevicePropertyStreamConfiguration, DeviceListenerProc));
 		}
@@ -532,8 +532,8 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
 {
 	mOutputDeviceList = NULL;
 	
-	mSoundflower2Device = 0;
-	mSoundflower16Device = 0;
+	mTelephonica2Device = 0;
+	mTelephonica16Device = 0;
 	mNchnls2 = 0;
 	mNchnls16 = 0;
 	
@@ -605,8 +605,8 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
         mMenuID2[i] = 0;
     }
 		
-	if (mSoundflower2Device) {
-		m2chMenu = [mMenu addItemWithTitle:@"Soundflower (2ch)" action:@selector(doNothing) keyEquivalent:@""];
+	if (mTelephonica2Device) {
+		m2chMenu = [mMenu addItemWithTitle:@"Telephonica (2ch)" action:@selector(doNothing) keyEquivalent:@""];
 		[m2chMenu setImage:[NSImage imageNamed:@"sf2"]];
 		[m2chMenu setTarget:self];
 			NSMenu *submenu = [[NSMenu alloc] initWithTitle:@"2ch submenu"];
@@ -672,16 +672,16 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
 		}
 	}
 	else {
-		item = [mMenu addItemWithTitle:@"Soundflower Is Not Installed!!" action:NULL keyEquivalent:@""];
+		item = [mMenu addItemWithTitle:@"Telephonica Is Not Installed!!" action:NULL keyEquivalent:@""];
 		[item setTarget:self];
 	}
 	
 	[mMenu addItem:[NSMenuItem separatorItem]];
 	
 	
-	if (mSoundflower16Device) {
+	if (mTelephonica16Device) {
 	
-		m16chMenu = [mMenu addItemWithTitle:@"Soundflower (64ch)" action:@selector(doNothing) keyEquivalent:@""];
+		m16chMenu = [mMenu addItemWithTitle:@"Telephonica (64ch)" action:@selector(doNothing) keyEquivalent:@""];
 		[m16chMenu setImage:[NSImage imageNamed:@"sf16"]];
 		[m16chMenu setTarget:self];
 			NSMenu *submenu = [[NSMenu alloc] initWithTitle:@"16ch submenu"];
@@ -769,13 +769,13 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
 	item = [mMenu addItemWithTitle:@"Audio Setup..." action:@selector(doAudioSetup) keyEquivalent:@""];
 	[item setTarget:self];
 	
-	item = [mMenu addItemWithTitle:@"About Soundflowerbed..." action:@selector(doAbout) keyEquivalent:@""];
+	item = [mMenu addItemWithTitle:@"About Telephonicabed..." action:@selector(doAbout) keyEquivalent:@""];
 	[item setTarget:self];
     
-	// item = [mMenu addItemWithTitle:@"Hide Soundflowerbed" action:@selector(hideMenuItem) keyEquivalent:@""];
+	// item = [mMenu addItemWithTitle:@"Hide Telephonicabed" action:@selector(hideMenuItem) keyEquivalent:@""];
 	// [item setTarget:self];
 	
-	item = [mMenu addItemWithTitle:@"Quit Soundflowerbed" action:@selector(doQuit) keyEquivalent:@""];
+	item = [mMenu addItemWithTitle:@"Quit Telephonicabed" action:@selector(doQuit) keyEquivalent:@""];
 	[item setTarget:self];
 
 	[mSbItem setMenu:mMenu];
@@ -805,20 +805,20 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
 	AudioDeviceList::DeviceList &thelist = mOutputDeviceList->GetList();
 	int index = 0;
 	for (AudioDeviceList::DeviceList::iterator i = thelist.begin(); i != thelist.end(); ++i, ++index) {
-		if (0 == strcmp("Soundflower (2ch)", (*i).mName)) {
-			mSoundflower2Device = (*i).mID;
+		if (0 == strcmp("Telephonica (2ch)", (*i).mName)) {
+			mTelephonica2Device = (*i).mID;
 			AudioDeviceList::DeviceList::iterator toerase = i;
 			i--;
 			thelist.erase(toerase);
 		}
-		else if (0 == strcmp("Soundflower (16ch)", (*i).mName)) {
-			mSoundflower16Device = (*i).mID;
+		else if (0 == strcmp("Telephonica (16ch)", (*i).mName)) {
+			mTelephonica16Device = (*i).mID;
 			AudioDeviceList::DeviceList::iterator toerase = i;
 			i--;
 			thelist.erase(toerase);
 		}
-        else if (0 == strcmp("Soundflower (64ch)", (*i).mName)) {
-            mSoundflower16Device = (*i).mID;
+        else if (0 == strcmp("Telephonica (64ch)", (*i).mName)) {
+            mTelephonica16Device = (*i).mID;
             AudioDeviceList::DeviceList::iterator toerase = i;
             i--;
             thelist.erase(toerase);
@@ -839,13 +839,13 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
         }
     }
 
-    if ((!mThruEngine[0] || !mThruEngine[1]) && mSoundflower2Device && mSoundflower16Device) {
+    if ((!mThruEngine[0] || !mThruEngine[1]) && mTelephonica2Device && mTelephonica16Device) {
 
         mThruEngine[0] = new AudioThruEngine;
-        mThruEngine[0]->SetInputDevice(mSoundflower2Device);
+        mThruEngine[0]->SetInputDevice(mTelephonica2Device);
         
         mThruEngine[1] = new AudioThruEngine;
-        mThruEngine[1]->SetInputDevice(mSoundflower16Device);
+        mThruEngine[1]->SetInputDevice(mTelephonica16Device);
         
         mThruEngine[0]->Start();
         mThruEngine[1]->Start();
@@ -877,12 +877,12 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
 	
 	[self buildMenu];
 	
-	if (mSoundflower2Device && mSoundflower16Device) {
+	if (mTelephonica2Device && mTelephonica16Device) {
 		mThruEngine[0] = new AudioThruEngine;
-		mThruEngine[0]->SetInputDevice(mSoundflower2Device);
+		mThruEngine[0]->SetInputDevice(mTelephonica2Device);
 		
 		mThruEngine[1] = new AudioThruEngine;
-		mThruEngine[1]->SetInputDevice(mSoundflower16Device);
+		mThruEngine[1]->SetInputDevice(mTelephonica16Device);
 
 		mThruEngine[0]->Start();
 		mThruEngine[1]->Start();
@@ -917,7 +917,7 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
 	if (mThruEngine[1])
 		mThruEngine[1]->Stop();
 		
-	if (mSoundflower2Device && mSoundflower16Device)
+	if (mTelephonica2Device && mTelephonica16Device)
 		[self writeGlobalPrefs];
 }
 

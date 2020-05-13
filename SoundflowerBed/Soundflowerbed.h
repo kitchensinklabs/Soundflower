@@ -1,10 +1,10 @@
-/* Soundflowerbed */
+/* Telephonicabed */
 
 #import <Cocoa/Cocoa.h>
 
 //#include "AudioDeviceList.h"
 
-@interface Soundflowerbed : NSObject
+@interface Telephonicabed : NSObject
 {
 	
 //	AudioDeviceList *			mInputDeviceList;

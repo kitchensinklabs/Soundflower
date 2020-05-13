@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby -wU
 
 ###################################################################
-# make an installer for Soundflower
+# make an installer for Telephonica
 # requires: you must have already performed a Deployment build
 ###################################################################
 
@@ -74,7 +74,7 @@ end
 def getversion()
   theVersion = "0.0.0"
 
-  f = File.open("#{@installer_root}/System/Library/Extensions/Soundflower.kext/Contents/Info.plist", "r")
+  f = File.open("#{@installer_root}/System/Library/Extensions/Telephonica.kext/Contents/Info.plist", "r")
   str = f.read
   theVersion = str.match(/<key>CFBundleShortVersionString<\/key>\n.*<string>(.*)<\/string>/).captures[0]
   f.close
@@ -91,28 +91,28 @@ create_logs()
 
 @installer_root = "#{@svn_root}/Build/InstallerRoot"
 @version = getversion()
-@build_folder = "#{@svn_root}/Build/Soundflower-#{@version}"
+@build_folder = "#{@svn_root}/Build/Telephonica-#{@version}"
 
 puts "  Creating installer directory structure..."
 cmd("rm -rfv \"#{@build_folder}\"")                       # remove an old temp dir if it exists
 cmd("mkdir -pv \"#{@build_folder}\"")                     # now make a clean one, and build dir structure in it
 
-cmd("cp \"#{@svn_root}/Tools/Uninstall Soundflower.scpt\"           \"#{@installer_root}\"/Applications/Soundflower")
-cmd("cp \"#{@svn_root}/License.txt\"                                \"#{@installer_root}\"/Applications/Soundflower")
-cmd("cp \"#{@svn_root}/Installer/ReadMe.rtf\"                       \"#{@installer_root}\"/Applications/Soundflower")
-cmd("cp \"#{@svn_root}/SoundflowerBed/Soundflowerbed README.rtf\"   \"#{@installer_root}\"/Applications/Soundflower")
+cmd("cp \"#{@svn_root}/Tools/Uninstall Telephonica.scpt\"           \"#{@installer_root}\"/Applications/Telephonica")
+cmd("cp \"#{@svn_root}/License.txt\"                                \"#{@installer_root}\"/Applications/Telephonica")
+cmd("cp \"#{@svn_root}/Installer/ReadMe.rtf\"                       \"#{@installer_root}\"/Applications/Telephonica")
+cmd("cp \"#{@svn_root}/TelephonicaBed/Telephonicabed README.rtf\"   \"#{@installer_root}\"/Applications/Telephonica")
 
 puts "  Building Package -- this could take a while..."
-puts `pkgbuild --root \"#{@installer_root}\" --identifier com.cycling74.soundflower --version #{@version} --install-location "/" \"#{@build_folder}/Soundflower.pkg\" --ownership preserve  --scripts \"#{@svn_root}/Installer/scripts\" --sign \"Developer ID Installer: Cycling '74\"`
+puts `pkgbuild --root \"#{@installer_root}\" --identifier com.cycling74.soundflower --version #{@version} --install-location "/" \"#{@build_folder}/Telephonica.pkg\" --ownership preserve  --scripts \"#{@svn_root}/Installer/scripts\" --sign \"Developer ID Installer: Cycling '74\"`
 
 puts "  Copying readme, license, etc...."
 cmd("cp \"#{@svn_root}/License.txt\" \"#{@build_folder}\"")
 cmd("cp \"#{@svn_root}/Installer/ReadMe.rtf\" \"#{@build_folder}\"")
-cmd("cp \"#{@svn_root}/Tools/Uninstall Soundflower.scpt\" \"#{@build_folder}\"")
+cmd("cp \"#{@svn_root}/Tools/Uninstall Telephonica.scpt\" \"#{@build_folder}\"")
 
 puts "  Creating Disk Image..."
-cmd("rm -rfv \"#{@svn_root}/Installer/Soundflower-#{@version}.dmg\"")
-cmd("hdiutil create -srcfolder \"#{@build_folder}\" \"#{@svn_root}/Build/Soundflower-#{@version}.dmg\"")
+cmd("rm -rfv \"#{@svn_root}/Installer/Telephonica-#{@version}.dmg\"")
+cmd("hdiutil create -srcfolder \"#{@build_folder}\" \"#{@svn_root}/Build/Telephonica-#{@version}.dmg\"")
 
 puts "  All done!"
 

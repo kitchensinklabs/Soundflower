@@ -6,9 +6,9 @@
 */
 
 
-#import "Soundflowerbed.h"
+#import "Telephonicabed.h"
 
-@implementation Soundflowerbed
+@implementation Telephonicabed
 
 - (void)awakeFromNib
 {
@@ -40,7 +40,7 @@
 	[menu addItem:[NSMenuItem separatorItem]];
 	
 	
-	item = [menu addItemWithTitle:@"Soundflower Device" action:NULL keyEquivalent:@""];
+	item = [menu addItemWithTitle:@"Telephonica Device" action:NULL keyEquivalent:@""];
 	[item setTarget:self];
 	
 	item = [menu addItemWithTitle:@"2 Channel" action:@selector(doNothing) keyEquivalent:@""];
@@ -54,7 +54,7 @@
 	
 	
 	
-	item = [menu addItemWithTitle:@"Soundflower Channel Routing" action:NULL keyEquivalent:@""];
+	item = [menu addItemWithTitle:@"Telephonica Channel Routing" action:NULL keyEquivalent:@""];
 	[item setTarget:self];
 	
 	item = [menu addItemWithTitle:@"1" action:@selector(doNothing) keyEquivalent:@""];
@@ -404,10 +404,10 @@
 	
 	[menu addItem:[NSMenuItem separatorItem]];
 	
-	item = [menu addItemWithTitle:@"About Soundflowerbed..." action:@selector(doNothing) keyEquivalent:@""];
+	item = [menu addItemWithTitle:@"About Telephonicabed..." action:@selector(doNothing) keyEquivalent:@""];
 	[item setTarget:self];
 	
-	item = [menu addItemWithTitle:@"Quit Soundflowerbed" action:@selector(doQuit) keyEquivalent:@""];
+	item = [menu addItemWithTitle:@"Quit Telephonicabed" action:@selector(doQuit) keyEquivalent:@""];
 	[item setTarget:self];
 	
 	
